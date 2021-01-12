@@ -11,11 +11,11 @@ data_test = pd.read_csv('diabetes_test.txt', header=None)
 def preprocessing(data_input):
     standardopt = MM()
     data_input.iloc[:, -1].replace(0, -1, inplace=True) #把数据集中的0转为-1
-    feature = data_input.iloc[:, :-1] #除了最后一列之外，其余均为特征
-    feature = standardopt.fit_transform(feature) #将特征转换为0与1之间的数
-    feature = np.mat(feature)#传回来的是array，如果要dataframe那用dataframe
-    label = np.array(data_input.iloc[:, -1]) #最后一列是标签，表示有无糖尿病。1:有, 0:无
-    return feature, label #返回特征，标签
+    feature = data_input.iloc[:, :-1]                   #除了最后一列之外，其余均为特征
+    feature = standardopt.fit_transform(feature)        #将特征转换为0与1之间的数
+    feature = np.mat(feature)                  #传回来的是array，如果要dataframe那用dataframe
+    label = np.array(data_input.iloc[:, -1])    #最后一列是标签，表示有无糖尿病。1:有, 0:无
+    return feature, label     #返回特征，标签
 
 # 分类器
 def sigmoid(x): #定义sigmoid函数
